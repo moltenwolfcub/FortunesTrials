@@ -1,7 +1,8 @@
 <p>
     <a href="{% url 'fortunes_trials:index' %}">Fortune's Trials</a> - 
     {% if user.is_authenticated %}
-        Hello, {{ user.username }}.
+        Hello, {{ user.username }}
+        <a href="{% url 'fortunes_trials:bank' %}">Bank Account</a> - 
         <a href="{% url 'users:logout' %}">Log out</a>
     {% else %}
         <a href="{% url 'users:register' %}">Register</a> -

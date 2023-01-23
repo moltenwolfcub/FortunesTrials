@@ -1,7 +1,10 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.shortcuts import redirect, render
+
+from coreApp.models import BankAccount
 
 
 def register(request: HttpRequest):
@@ -13,6 +16,7 @@ def register(request: HttpRequest):
 
         if form.is_valid():
             user = form.save()
+            BankAccount(owner=user, balance=0).save()
             login(request, user)
             return redirect("fortunes_trials:index")
 
