@@ -4,4 +4,12 @@
 
 <p>Your current balance is {{ balance }}</p>
 
+<p>
+    {% if dailyReady %}
+        You can collect your daily reward. (Although that isn't implemented yet)
+    {% else %}
+        Wait a bit longer for your daily reward. (Idk how long; still needs to be implemented)
+    {% endif %}
+</p>
+
 {% endblock content %}
