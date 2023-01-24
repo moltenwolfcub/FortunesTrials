@@ -5,10 +5,12 @@
 <p>Your current balance is {{ balance }}</p>
 
 <p>
-    {% if dailyReady %}
+    {% if sinceDaily.days >= 1 %}
         You can collect your daily reward. (Although that isn't implemented yet)
     {% else %}
-        Wait a bit longer for your daily reward. (Idk how long; still needs to be implemented)
+        Wait a bit longer for your daily reward. (Countdown timer is coming soon!)
+        <div>Next daily at: {{ nextDaily }}</div>
+        <div>Time left until next daily: {{ dailyCooldown }}</div>
     {% endif %}
 </p>
 

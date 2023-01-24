@@ -18,7 +18,13 @@ def bank(request: HttpRequest):
     balance = account.balance
 
     sinceDaily: timezone.timedelta = timezone.now()-account.lastDailyReward
-    daily: bool = sinceDaily.days >= 1
+    dailyCooldown = timezone.timedelta(days=1)-sinceDaily
+    dailyNextReady = (account.lastDailyReward+timezone.timedelta(days=1)).time()
 
-    context = {"balance": balance, "dailyReady": daily}
+    context = {
+        "balance": balance,
+        "sinceDaily": sinceDaily,
+        "nextDaily": dailyNextReady,
+        "dailyCooldown": dailyCooldown,
+    }
     return render(request, "coreApp/bank.html", context)
