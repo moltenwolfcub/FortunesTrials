@@ -8,10 +8,17 @@
     {% if sinceDaily.days >= 1 %}
         You can collect your daily reward. (Although that isn't implemented yet)
     {% else %}
-        Wait a bit longer for your daily reward. (Countdown timer is coming soon!)
-        <div>Next daily at: {{ nextDaily }}</div>
-        <div>Time left until next daily: {{ dailyCooldown }}</div>
+        Wait a bit longer for your daily reward
+        <div id="dailyCooldown"></div>
     {% endif %}
 </p>
+
+{% load static %}  
+<script src="{% static '/js/bank.js' %}" type="text/javascript"></script>
+
+<script>
+    updateDailyCooldown("{{ lastDaily }}")
+    setInterval(updateDailyCooldown, 1000, "{{ lastDaily }}");
+</script>
 
 {% endblock content %}
