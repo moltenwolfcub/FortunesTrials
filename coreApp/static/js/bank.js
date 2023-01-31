@@ -7,9 +7,14 @@ function updateDailyCooldown(lastDaily) {
     let msSince = Date.now()-msLast;
     let cooldownLength = 86_400_000;
     let timeLeft = cooldownLength-msSince;
-    let fmtTimeLeft = formatMs(timeLeft);
 
-    document.getElementById("dailyCooldown").innerHTML = fmtTimeLeft;
+    if (timeLeft<1) {
+        document.location.reload()
+    } else {
+        let fmtTimeLeft = formatMs(timeLeft);
+
+        document.getElementById("dailyCooldown").innerHTML = fmtTimeLeft;
+    }
 }
 
 function formatMs(s) {
